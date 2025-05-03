@@ -1,0 +1,53 @@
+.btn {
+  background-color: #3DA4C6; 
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+  padding: 8px 16px;
+  font-size: 16px; 
+  white-space: nowrap; 
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #2A8AA3;
+  box-shadow: none;
+}
+
+.small-btn {
+  padding: 5px 12px;
+  font-size: 14px; 
+}
+
+.custom-btn {
+  width: auto;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+.settings-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex; 
+  flex-direction: column;
+}
+
+
+
+.settings-card {
+  background: linear-gradient(to bottom, #0F5378, #0F557A, #1B9ADE); 
+}
+
+.mb-4{
+font-size: 35px;
+font-weight: bold;
+}

@@ -1,0 +1,108 @@
+.historyPage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  font-family: sans-serif;
+  background: linear-gradient(to bottom, #0F5378, #0F557A, #1B9ADE);
+  color: rgb(255, 255, 255);
+}
+
+.header {
+  text-align: left; 
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  gap: 1rem; 
+
+}
+.header h1 {
+  white-space: nowrap;
+}
+
+.plansContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 90%;
+}
+
+.planRow {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+}
+
+.square {
+  background-color:#6497B3;
+  color: black;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: black;
+}
+
+.rectangle {
+  flex: 1;
+  background-color:#6497B3;
+  color: black;
+  padding: 5px;
+  height: 200px; /* ارتفاع المستطيل */
+  border-radius: 15px;
+  width: 20%;
+  max-width: 650px;
+  display: flex;
+  justify-content: center; /* توسيط المحتوى أفقيًا */
+  align-items: center; /* توسيط المحتوى عموديًا */
+}
+
+.chartAndDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.pieChartContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+  height: 100%;
+}
+
+.expenseDetails {
+  flex: 1;
+  font-size: 14px;
+  padding-left: 130px;
+}
+
+.expenseItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px; 
+}
+
+.colorDot {
+  width: 20px; 
+  height: 20px; 
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.header {
+  text-align: left;
+}

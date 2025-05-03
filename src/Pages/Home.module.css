@@ -1,0 +1,77 @@
+.container {
+  padding-right: 50px;
+  padding-left: 50px;
+  background: linear-gradient(to bottom, #0F5378, #0F557A, #1B9ADE); 
+}
+
+.listUnstyled {
+  padding-left: 0;
+}
+
+.listUnstyled li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.listUnstyled li div {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.bgPrimary {
+  background-color: #3DA4C6;
+}
+
+.bgSecondary {
+  background-color: #3DA4C6;
+}
+
+.bgSuccess {
+  background-color: #3DA4C6;
+}
+
+.bgInfo {
+  background-color: #17a2b8;
+}
+
+.bgDanger {
+  background-color: #3DA4C6;
+}
+
+.col-md-4 {
+  display: flex;
+  align-items: stretch;
+}
+
+.savingsText {
+  font-size: 0.7rem;
+  margin-top: 5px;
+  display: block;
+  text-align: center;
+}
+
+.bgSuccess h5, .bgInfo h5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.bgSuccess p, .bgInfo p {
+  font-size: 1.2rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.bgPrimary h5, .bgSecondary h5, .bgDanger h5 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.bgPrimary p, .bgSecondary p, .bgDanger p {
+  font-size: 1rem;
+}

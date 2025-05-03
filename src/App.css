@@ -1,0 +1,17 @@
+/* App.css */
+:root {
+  --gradient-blue: linear-gradient(48deg, #0f5378 0%, #1b9ade 100%);
+}
+
+.fade-in {
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,65 @@
+/* Feedback.css */
+
+.feedback-container {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #0F5378, #0F557A, #1B9ADE); 
+  }
+  
+  h2 {
+    color: #0c0d0d; 
+    font-weight: bold;
+  }
+  
+  h5 {
+    color: #141415; 
+  }
+  .lead{
+    font-weight: bold;
+    font-size: 26px;
+
+  }
+
+  
+  .card {
+    background-color: #6498B5; 
+    /* border: 1px solid #dee2e6;  */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .btn-primary {
+    background-color: #3DA4C6;
+    border-color: #007bff;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px 20px;
+    width: fit-content; 
+    display: block; 
+    margin-left: auto; 
+}
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  textarea {
+    border-radius: 5px;
+    resize: none; 
+  }
+  
+  @media (max-width: 768px) {
+    .feedback-container {
+      width: 100%; 
+    }
+  }
+  

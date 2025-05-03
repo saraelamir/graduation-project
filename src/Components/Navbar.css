@@ -1,0 +1,67 @@
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #0F5378, #0F5378);
+  padding: 15px 50px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.logo h2 {
+  color: aliceblue;
+  font-size: 26px;
+  font-weight: 600;
+
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00bfff;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.login-btn, .signup-btn {
+  background-color: #008cba;
+  border: none;
+  padding: 8px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.login-btn:hover, .signup-btn:hover {
+  background-color: #0073a6;
+}

@@ -1,0 +1,21 @@
+.container-fluid{
+    background: linear-gradient(to bottom, #0F5378, #1577Ac, #1C9ADE); 
+}
+
+
+.bg-info {
+    font-size: 30px; 
+    background-color: #6497B3 !important;
+}
+  
+.bg-lightt{
+    background-color: #6497B3 !important;
+    border-radius: 22px;
+
+}
+.text-dark{
+    font-size: 24px; 
+}
+small{
+    color: black;
+}
