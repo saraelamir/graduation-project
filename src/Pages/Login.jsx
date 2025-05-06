@@ -6,8 +6,8 @@ import logo from "../assets/Logo Icon@2x.png";
 import loginImage from "../assets/signup.png";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-import ForgotPassword from "./ForgotPassword"; // استيراد المودال الخاص بكلمة المرور المنسية
-import ResetPassword from "./ResetPassword"; // استيراد المودال الخاص بإعادة تعيين كلمة المرور
+import ForgotPassword from "./ForgotPassword"; 
+import ResetPassword from "./ResetPassword";
 const CLIENT_ID = "169357971005-h5uqgs3i94e6uifp2j12n0o7gm2fkdr6.apps.googleusercontent.com";
 
 function Login() {
@@ -15,8 +15,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [toastMessage, setToastMessage] = useState({ type: "", text: "" });
   const [showToast, setShowToast] = useState(false);
-  const [showForgotPassword, setShowForgotPassword] = useState(false); // لإظهار مودال "Forgot Password"
-  const [showResetPassword, setShowResetPassword] = useState(false); // لإظهار مودال "Reset Password"
+  const [showForgotPassword, setShowForgotPassword] = useState(false); 
+  const [showResetPassword, setShowResetPassword] = useState(false); 
   const navigate = useNavigate();
 
   const showToastMessage = (type, text) => {
@@ -29,6 +29,10 @@ function Login() {
     try {
       const loginData = { email, password };
       const response = await axios.post("https://graduproj.runasp.net/api/Account/login", loginData);
+
+      // تخزين التوكن في localStorage بعد تسجيل الدخول بنجاح
+      const token = response.data.token;
+      localStorage.setItem("token", token);
 
       showToastMessage("success", "Login successful!");
       setTimeout(() => navigate("/home"), 1500); // عدل المسار حسب احتياجك
@@ -44,7 +48,7 @@ function Login() {
         const googleData = { idToken: response.credential };
         await axios.post("/api/Auth/ExternalLogin", googleData);
         showToastMessage("success", "Google login successful!");
-        setTimeout(() => navigate("/home"), 1500); // عدل المسار حسب احتياجك
+        setTimeout(() => navigate("/home"), 1500); 
       }
     } catch (error) {
       showToastMessage("error", "Google login failed.");
