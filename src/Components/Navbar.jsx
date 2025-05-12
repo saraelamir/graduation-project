@@ -7,7 +7,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isWelcomePage = location.pathname === "/welcome";
-  const isLandingPage = location.pathname === "/landing";
+  const isLandingPage = location.pathname === "/landing"|| location.pathname === "/";
 
 
   return (

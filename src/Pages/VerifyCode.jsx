@@ -23,7 +23,7 @@ const VerifyCode = ({ show, onHide }) => {
 
       alert(response.data.message);
       onHide();  // غلق المودال بعد التحقق بنجاح
-      navigate("/home");
+      navigate("/login");
     } catch (error) {
       // التحقق من الخطأ وعرض الرسالة المناسبة
       if (error.response && error.response.data) {

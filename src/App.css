@@ -15,3 +15,20 @@
     opacity: 1;
   }
 }
+
+/* ── FLEX LAYOUT ── */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar-container {
+  flex-shrink: 0; /* width from Sidebar.module.css */
+  transition: width 0.3s ease;
+  background: linear-gradient(to bottom, #0F5378, #0F557A, #1B9ADE); 
+}
+
+.content {
+  flex-grow: 1; /* fill remaining space */
+  transition: all 0.3s ease;
+}

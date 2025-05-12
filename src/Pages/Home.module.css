@@ -1,17 +1,34 @@
 .container {
-  padding-right: 50px;
-  padding-left: 50px;
-  background: linear-gradient(to bottom, #0F5378, #0F557A, #1B9ADE); 
+  padding: 2rem 1.5rem;
+  background: linear-gradient(to bottom, #0f5378, #0f557a, #1b9ade);
+}
+
+.goalCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #0f5378;
+  border-radius: 8px;
 }
 
 .listUnstyled {
   padding-left: 0;
+  overflow-x: auto;
 }
 
 .listUnstyled li {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.listUnstyled::-webkit-scrollbar {
+  height: 6px;
+}
+.listUnstyled::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
 }
 
 .listUnstyled li div {
@@ -21,57 +38,47 @@
   border-radius: 50%;
 }
 
+/* Expense cards */
+.expenseCard {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+.expenseCard:hover {
+  transform: translateY(-4px);
+}
+
+/* Improved contrast for secondary & danger */
 .bgPrimary {
-  background-color: #3DA4C6;
+  background-color: #3da4c6;
+  border-radius: 8px;
 }
-
 .bgSecondary {
-  background-color: #3DA4C6;
-}
+  background-color: #28a4b0;
+    border-radius: 8px;
 
-.bgSuccess {
-  background-color: #3DA4C6;
 }
-
-.bgInfo {
-  background-color: #17a2b8;
-}
-
 .bgDanger {
-  background-color: #3DA4C6;
+  background-color: #28a4b0;
+    border-radius: 8px;
+
 }
 
-.col-md-4 {
-  display: flex;
-  align-items: stretch;
-}
-
-.savingsText {
-  font-size: 0.7rem;
-  margin-top: 5px;
-  display: block;
-  text-align: center;
-}
-
-.bgSuccess h5, .bgInfo h5 {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.bgSuccess p, .bgInfo p {
-  font-size: 1.2rem;
-}
-
+/* Typography tweaks */
 h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #fff;
 }
 
-.bgPrimary h5, .bgSecondary h5, .bgDanger h5 {
-  font-size: 1rem;
-  font-weight: normal;
+.goalCard h5 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
 }
 
-.bgPrimary p, .bgSecondary p, .bgDanger p {
+.goalCard p {
   font-size: 1rem;
+  margin: 0.25rem 0;
+  color: #555;
 }

@@ -8,7 +8,7 @@ import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import ForgotPassword from "./ForgotPassword"; 
 import ResetPassword from "./ResetPassword";
-const CLIENT_ID = "169357971005-h5uqgs3i94e6uifp2j12n0o7gm2fkdr6.apps.googleusercontent.com";
+const CLIENT_ID = "980949516842-p25ise9gq3nrp0e6defp164c96k6l8iv.apps.googleusercontent.com";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -35,7 +35,7 @@ function Login() {
       localStorage.setItem("token", token);
 
       showToastMessage("success", "Login successful!");
-      setTimeout(() => navigate("/home"), 1500); // عدل المسار حسب احتياجك
+      setTimeout(() => navigate("/welcome"), 1500); // عدل المسار حسب احتياجك
     } catch (error) {
       const msg = error.response?.data?.message || "Something went wrong.";
       showToastMessage("error", msg);

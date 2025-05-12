@@ -1,108 +1,123 @@
-.historyPage {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+/* CompletedGoals.module.css */
+
+.completedGoalsContainer {
+  flex-grow: 1;
   padding: 20px;
-  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(to bottom, #0F5378, #0F557A, #1B9ADE);
-  color: rgb(255, 255, 255);
 }
 
-.header {
-  text-align: left; 
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
-  gap: 1rem; 
-
-}
-.header h1 {
-  white-space: nowrap;
-}
-
-.plansContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  width: 90%;
-}
-
-.planRow {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
-  margin-left: 15px;
-}
-
-.square {
-  background-color:#6497B3;
-  color: black;
-  border-radius: 8px;
-  text-align: center;
-  padding: 16px;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.completedGoalsTitle {
+  color: #0c0d0d;
   font-weight: bold;
-  color: black;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
 
-.rectangle {
-  flex: 1;
-  background-color:#6497B3;
-  color: black;
-  padding: 5px;
-  height: 200px; /* ارتفاع المستطيل */
-  border-radius: 15px;
-  width: 20%;
-  max-width: 650px;
-  display: flex;
-  justify-content: center; /* توسيط المحتوى أفقيًا */
-  align-items: center; /* توسيط المحتوى عموديًا */
+.goalItemCard {
+  background-color: #6498B5;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
 }
 
-.chartAndDetails {
+.goalName {
+  color: #141415;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.showPlanButton {
+  background-color: #3DA4C6;
+  border-color: #007bff;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px 20px;
+  width: fit-content;
+  display: block;
+  margin-left: auto;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.showPlanButton:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.planContainer {
+  padding-left: 20px;
+  margin-top: 10px;
+  border-left: 2px solid #ddd;
+}
+
+.planTitle {
+  color: #141415;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.planItem {
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 1rem; 
+}
+
+.planItemsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 12px;
+  margin-bottom: 10px;
+  
+}
+
+.planItem {
+  background-color: #e8e5f4;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-}
-
-.pieChartContainer {
-  flex: 1;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  margin-left: 30px;
-  height: 100%;
+  height: 140px; 
 }
 
-.expenseDetails {
-  flex: 1;
-  font-size: 14px;
-  padding-left: 130px;
+.planItem i {
+  font-size: 1.5rem;
+  margin-bottom: 10px; 
 }
 
-.expenseItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 20px; 
+.planItem .planText {
+  font-size: 1.2rem; 
+  font-weight: bold;
 }
 
-.colorDot {
-  width: 20px; 
-  height: 20px; 
-  border-radius: 50%;
-  display: inline-block;
+.planItem .planAmount {
+  font-size: 1rem; 
+  color: #3DA4C6;
 }
 
-.header {
-  text-align: left;
+.goalName {
+  font-size: 23px; 
+  color: #f7f4f3; 
+  font-weight: bold; 
+}
+
+@media (max-width: 768px) {
+  .completedGoalsContainer {
+    width: 100%;
+  }
+
+  .planItemsGrid {
+    grid-template-columns: repeat(2, 1fr);  
+  }
+
+  .planItem {
+    height: auto; 
+  }
 }

@@ -4,8 +4,9 @@
   align-items: center;
   background: linear-gradient(to bottom, #0F5378, #0F557A, #1B9ADE); 
   padding: 50px 10%;
-  /* max-width: 1200px; */
   margin: auto;
+  min-height: 100vh; /* لحل مشكلة المساحة البيضاء */
+  overflow: hidden;  /* يمنع أي عناصر من الخروج بره */
 }
 
 .hero {
