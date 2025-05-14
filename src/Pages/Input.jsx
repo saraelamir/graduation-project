@@ -8,10 +8,10 @@ import logo from "../assets/Logo Icon@2x.png";
 
 const InputPage = () => {
 
-  const navigate = useNavigate(); // استخدام التوجيه
+  const navigate = useNavigate();
 
-  const occupationOptions = ['Student', 'Employee', 'Freelancer', 'Unemployed'];
-  const cityTierOptions = ['1', '2', '3'];
+  const occupationOptions = ['Student', 'Self_Employed', 'Retierd', 'Professional'];
+  const cityTierOptions = ['Tier_1', 'Tier_2', 'Tier_3'];
 
   const [formData, setFormData] = useState({
     age: '',
@@ -32,12 +32,10 @@ const InputPage = () => {
     otherMony: '',
   });
 
-  const [isDataAdded, setIsDataAdded] = useState(false);
   const [goalData, setGoalData] = useState({
-    goal_name: '',
-    goal_amount: '',
+    goalName: '',
+    goalAmount: '',
   });
-  const [isGoalAdded, setIsGoalAdded] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -55,7 +53,6 @@ const InputPage = () => {
     }));
   };
 
-  // التحقق من صحة البيانات (رسالة عامة)
   const validateFormData = () => {
     if (Object.values(formData).some(value => value === '')) {
       alert('Please fill out all fields');
@@ -64,13 +61,12 @@ const InputPage = () => {
     return true;
   };
 
-  // التحقق من صحة بيانات الهدف
   const validateGoalData = () => {
-    if (!goalData.goal_name || !goalData.goal_amount) {
+    if (!goalData.goalName || !goalData.goalAmount) {
       alert('Please fill out all goal fields');
       return false;
     }
-    if (isNaN(goalData.goal_amount) || Number(goalData.goal_amount) <= 0) {
+    if (isNaN(goalData.goalAmount) || Number(goalData.goalAmount) <= 0) {
       alert('Please enter a valid goal amount.');
       return false;
     }
@@ -87,22 +83,12 @@ const InputPage = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert(response.data.message || 'Data successfully added!');
-      setIsDataAdded(true); // تم إضافة البيانات
-      setFormData({
-        age: '', dependents: '', occupation: '', city_tier: '', income: '', rent: '', loanPayment: '', insurance: '',
-        groceries: '', transport: '', eatingOut: '', entertainment: '', utilities: '', healthcare: '', education: '', otherMony: ''
-      });
-      navigate('/'); // التوجيه إلى الصفحة الرئيسية
     } catch (error) {
       handleError(error);
     }
   };
 
   const handleUpdateInput = async () => {
-    if (!isDataAdded) {
-      alert("Please add data first before updating.");
-      return;
-    }
     if (!validateFormData()) return;
     try {
       const token = localStorage.getItem("token");
@@ -112,12 +98,7 @@ const InputPage = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert(response.data.message || 'Data successfully updated!');
-      setIsDataAdded(false); // إعادة تعيين حالة البيانات المضافة
-      setFormData({
-        age: '', dependents: '', occupation: '', city_tier: '', income: '', rent: '', loanPayment: '', insurance: '',
-        groceries: '', transport: '', eatingOut: '', entertainment: '', utilities: '', healthcare: '', education: '', otherMony: ''
-      });
-      navigate('/home'); // التوجيه إلى الصفحة الرئيسية
+      navigate('/home'); 
     } catch (error) {
       handleError(error);
     }
@@ -128,24 +109,18 @@ const InputPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        'https://graduproj.runasp.net/api/Goal/add_goal',
+       'https://graduproj.runasp.net/api/Goal/add_goal',
         goalData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert(response.data.message || 'Goal successfully added!');
-      setIsGoalAdded(true); // تم إضافة الهدف
-      setGoalData({ goal_name: '', goal_amount: '' });
-      navigate('/home'); // التوجيه إلى الصفحة الرئيسية
+      navigate('/home');
     } catch (error) {
       handleError(error);
     }
   };
 
   const handleUpdateGoal = async () => {
-    if (!isGoalAdded) {
-      alert("Please add a goal first before updating.");
-      return;
-    }
     if (!validateGoalData()) return;
     try {
       const token = localStorage.getItem("token");
@@ -155,9 +130,7 @@ const InputPage = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert(response.data.message || 'Goal successfully updated!');
-      setIsGoalAdded(false); // إعادة تعيين حالة الهدف المضاف
-      setGoalData({ goal_name: '', goal_amount: '' });
-      navigate('/home'); // التوجيه إلى الصفحة الرئيسية
+      navigate('/home'); 
     } catch (error) {
       handleError(error);
     }
@@ -187,10 +160,13 @@ const InputPage = () => {
         <h2 className={styles.title}>Enter Your Financial Details</h2>
 
         {Object.entries(formData).map(([key, value], index) => {
-          const label = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+          const label = key
+            .replace(/_/g, ' ')
+            .replace(/\b\w/g, l => l.toUpperCase())
+            .replace('Mony', 'Money'); 
           const isOccupation = key === 'occupation';
           const isCityTier = key === 'city_tier';
-          const displayLabel = `Enter your ${label}`;
+          const displayLabel = `Enter your ${label} `;
 
           return (
             <div className={styles.inputGroup} key={index}>
@@ -234,8 +210,8 @@ const InputPage = () => {
           <label>Goal Name</label>
           <input
             type="text"
-            name="goal_name"
-            value={goalData.goal_name}
+            name="goalName"
+            value={goalData.goalName}
             className={styles.inputField}
             onChange={handleGoalChange}
           />
@@ -245,8 +221,8 @@ const InputPage = () => {
           <label>Goal Amount</label>
           <input
             type="number"
-            name="goal_amount"
-            value={goalData.goal_amount}
+            name="goalAmount"
+            value={goalData.goalAmount}
             className={styles.inputField}
             onChange={handleGoalChange}
           />

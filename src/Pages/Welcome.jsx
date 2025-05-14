@@ -13,7 +13,7 @@ export default function Welcome() {
         <div className="row justify-content-center align-items-center w-100">
           {/* Text Column */}
           <div className={`col-12 col-md-6 col-lg-5 ${styles.textCol}`}>
-            <h1 className={styles.heading}>Welcome Maged,</h1>
+            <h1 className={styles.heading}>Welcome</h1>
             <p className={styles.subtitle}>
               Your Journey To Smarter Spending And Bigger<br />Savings Starts Here
             </p>
