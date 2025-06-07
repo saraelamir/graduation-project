@@ -42,19 +42,26 @@ function Login() {
     }
   };
 
-  const handleGoogleLogin = async (response) => {
-    try {
-      if (response.credential) {
-        const googleData = { idToken: response.credential };
-        await axios.post("/api/Auth/ExternalLogin", googleData);
-        showToastMessage("success", "Google login successful!");
-        setTimeout(() => navigate("/home"), 1500); 
-      }
-    } catch (error) {
-      showToastMessage("error", "Google login failed.");
-    }
-  };
+const handleGoogleLogin = async (response) => {
+  try {
+    if (response.credential) {
+      const googleData = { idToken: response.credential };
 
+      const res = await axios.post("https://graduproj.runasp.net/api/Account/google-login", googleData);
+
+      // ✅ خزن التوكن في localStorage
+      const token = res.data.token;
+      localStorage.setItem("token", token);
+
+      showToastMessage("success", "Google login successful!");
+
+      // ✅ تنقلي المستخدم على نفس صفحة ال login العادية (ممكن تخليها /welcome بدل /home)
+      setTimeout(() => navigate("/welcome"), 1500);
+    }
+  } catch (error) {
+    showToastMessage("error", "Google login failed.");
+  }
+};
   const handleShowForgotPassword = () => setShowForgotPassword(true); // إظهار مودال "Forgot Password"
   const handleCloseForgotPassword = () => setShowForgotPassword(false); // إغلاق مودال "Forgot Password"
   

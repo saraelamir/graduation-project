@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -29,21 +29,58 @@ const InputPage = () => {
     utilities: '',
     healthcare: '',
     education: '',
-    otherMony: '',
+    otherMoney: '',
   });
+
+useEffect(() => {
+  const fetchLatestInput = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        'https://graduproj.runasp.net/api/Input/latest-input',
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (response.data) {
+        setFormData(response.data);
+      }
+    } catch (error) {
+      console.error('Failed to fetch latest input:', error);
+    }
+  };
+
+  const fetchLatestGoal = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(
+        'https://graduproj.runasp.net/api/Goal/last',
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (response.data) {
+        setGoalData(response.data);
+      }
+    } catch (error) {
+      console.error('Failed to fetch latest goal:', error);
+    }
+  };
+
+  fetchLatestInput();
+  fetchLatestGoal();
+}, []);
+
+
 
   const [goalData, setGoalData] = useState({
     goalName: '',
     goalAmount: '',
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+const handleInputChange = (e) => {
+  const { name, value, type } = e.target;
+  setFormData(prev => ({
+    ...prev,
+    [name]: type === 'number' ? (value === '' ? '' : Number(value)) : value,
+  }));
+};
 
   const handleGoalChange = (e) => {
     const { name, value } = e.target;
@@ -166,7 +203,7 @@ const InputPage = () => {
             .replace('Mony', 'Money'); 
           const isOccupation = key === 'occupation';
           const isCityTier = key === 'city_tier';
-          const displayLabel = `Enter your ${label} `;
+          const displayLabel = `Enter your ${label}`;
 
           return (
             <div className={styles.inputGroup} key={index}>
