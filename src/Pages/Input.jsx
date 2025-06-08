@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Toast } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,11 +7,11 @@ import styles from './Input.module.css';
 import logo from "../assets/Logo Icon@2x.png";
 
 const InputPage = () => {
-
   const navigate = useNavigate();
 
   const occupationOptions = ['Student', 'Self_Employed', 'Retierd', 'Professional'];
   const cityTierOptions = ['Tier_1', 'Tier_2', 'Tier_3'];
+  const [hasAddedInput, setHasAddedInput] = useState(false);
 
   const [formData, setFormData] = useState({
     age: '',
@@ -32,55 +32,56 @@ const InputPage = () => {
     otherMoney: '',
   });
 
-useEffect(() => {
-  const fetchLatestInput = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        'https://graduproj.runasp.net/api/Input/latest-input',
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      if (response.data) {
-        setFormData(response.data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch latest input:', error);
-    }
-  };
-
-  const fetchLatestGoal = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(
-        'https://graduproj.runasp.net/api/Goal/last',
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      if (response.data) {
-        setGoalData(response.data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch latest goal:', error);
-    }
-  };
-
-  fetchLatestInput();
-  fetchLatestGoal();
-}, []);
-
-
-
   const [goalData, setGoalData] = useState({
     goalName: '',
     goalAmount: '',
   });
 
-const handleInputChange = (e) => {
-  const { name, value, type } = e.target;
-  setFormData(prev => ({
-    ...prev,
-    [name]: type === 'number' ? (value === '' ? '' : Number(value)) : value,
-  }));
-};
+  const [toast, setToast] = useState({ show: false, message: '', type: '' });
+
+  useEffect(() => {
+    const fetchLatestInput = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          'https://graduproj.runasp.net/api/Input/latest-input',
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        if (response.data) {
+          setFormData(response.data);
+          setHasAddedInput(true);
+        }
+      } catch (error) {
+        console.error('Failed to fetch latest input:', error);
+      }
+    };
+
+    const fetchLatestGoal = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          'https://graduproj.runasp.net/api/Goal/last',
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        if (response.data) {
+          setGoalData(response.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch latest goal:', error);
+      }
+    };
+
+    fetchLatestInput();
+    fetchLatestGoal();
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value} = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]:value,
+    }));
+  };
 
   const handleGoalChange = (e) => {
     const { name, value } = e.target;
@@ -92,7 +93,7 @@ const handleInputChange = (e) => {
 
   const validateFormData = () => {
     if (Object.values(formData).some(value => value === '')) {
-      alert('Please fill out all fields');
+      showToast('Please fill out all fields', 'error');
       return false;
     }
     return true;
@@ -100,18 +101,28 @@ const handleInputChange = (e) => {
 
   const validateGoalData = () => {
     if (!goalData.goalName || !goalData.goalAmount) {
-      alert('Please fill out all goal fields');
+      showToast('Please fill out all goal fields', 'error');
       return false;
     }
     if (isNaN(goalData.goalAmount) || Number(goalData.goalAmount) <= 0) {
-      alert('Please enter a valid goal amount.');
+      showToast('Please enter a valid goal amount.', 'error');
       return false;
     }
     return true;
   };
 
+  const showToast = (message, type) => {
+    setToast({ show: true, message, type });
+  };
+
   const handleAddInput = async () => {
+    if (hasAddedInput) {
+      showToast("You already added your input. You can only update it.", 'error');
+      return;
+    }
+
     if (!validateFormData()) return;
+
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -119,7 +130,8 @@ const handleInputChange = (e) => {
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert(response.data.message || 'Data successfully added!');
+      showToast(response.data.message || 'Data successfully added!', 'success');
+      setHasAddedInput(true);
     } catch (error) {
       handleError(error);
     }
@@ -134,8 +146,8 @@ const handleInputChange = (e) => {
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert(response.data.message || 'Data successfully updated!');
-      navigate('/home'); 
+      showToast(response.data.message || 'Data successfully updated!', 'success');
+      navigate('/home');
     } catch (error) {
       handleError(error);
     }
@@ -146,11 +158,11 @@ const handleInputChange = (e) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-       'https://graduproj.runasp.net/api/Goal/add_goal',
+        'https://graduproj.runasp.net/api/Goal/add_goal',
         goalData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert(response.data.message || 'Goal successfully added!');
+      showToast(response.data.message || 'Goal successfully added!', 'success');
       navigate('/home');
     } catch (error) {
       handleError(error);
@@ -166,8 +178,8 @@ const handleInputChange = (e) => {
         goalData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert(response.data.message || 'Goal successfully updated!');
-      navigate('/home'); 
+      showToast(response.data.message || 'Goal successfully updated!', 'success');
+      navigate('/home');
     } catch (error) {
       handleError(error);
     }
@@ -176,13 +188,13 @@ const handleInputChange = (e) => {
   const handleError = (error) => {
     if (error.response) {
       console.error('Error response:', error.response);
-      alert(error.response.data.message || `Server error (${error.response.status})`);
+      showToast(error.response.data.message || `Server error (${error.response.status})`, 'error');
     } else if (error.request) {
       console.error('Error request:', error.request);
-      alert('No response from server. Please check your network.');
+      showToast('No response from server. Please check your network.', 'error');
     } else {
       console.error('Error message:', error.message);
-      alert('Unexpected error: ' + error.message);
+      showToast('Unexpected error: ' + error.message, 'error');
     }
   };
 
@@ -200,7 +212,7 @@ const handleInputChange = (e) => {
           const label = key
             .replace(/_/g, ' ')
             .replace(/\b\w/g, l => l.toUpperCase())
-            .replace('Mony', 'Money'); 
+            .replace('Mony', 'Money');
           const isOccupation = key === 'occupation';
           const isCityTier = key === 'city_tier';
           const displayLabel = `Enter your ${label}`;
@@ -269,8 +281,22 @@ const handleInputChange = (e) => {
           <Button variant="success" onClick={handleAddGoal} className="me-2">Add Goal</Button>
           <Button variant="success" onClick={handleUpdateGoal}>Update Goal</Button>
         </div>
-
       </Container>
+
+      {/* Toast in center of screen */}
+      {toast.show && (
+        <div className={styles.toastCenter}>
+          <Toast
+            bg={toast.type === 'error' ? 'danger' : 'success'}
+            onClose={() => setToast(prev => ({ ...prev, show: false }))}
+            show={toast.show}
+            delay={3000}
+            autohide
+          >
+            <Toast.Body className="text-white">{toast.message}</Toast.Body>
+          </Toast>
+        </div>
+      )}
     </div>
   );
 };

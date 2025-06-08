@@ -103,6 +103,7 @@ const handleGoogleLogin = async (response) => {
               className={styles["login-input"]}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              
             />
 
             <div className={styles["login-options"]}>
