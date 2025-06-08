@@ -12,6 +12,7 @@ const InputPage = () => {
   const occupationOptions = ['Student', 'Self_Employed', 'Retierd', 'Professional'];
   const cityTierOptions = ['Tier_1', 'Tier_2', 'Tier_3'];
   const [hasAddedInput, setHasAddedInput] = useState(false);
+  const [hasAddedGoal, setHasAddedGoal] = useState(false);
 
   const [formData, setFormData] = useState({
     age: '',
@@ -56,20 +57,21 @@ const InputPage = () => {
       }
     };
 
-    const fetchLatestGoal = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(
-          'https://graduproj.runasp.net/api/Goal/last',
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-        if (response.data) {
-          setGoalData(response.data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch latest goal:', error);
-      }
-    };
+const fetchLatestGoal = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(
+      'https://graduproj.runasp.net/api/Goal/last',
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    if (response.data) {
+      setGoalData(response.data);
+      setHasAddedGoal(true); 
+    }
+  } catch (error) {
+    console.error('Failed to fetch latest goal:', error);
+  }
+};
 
     fetchLatestInput();
     fetchLatestGoal();
@@ -153,21 +155,28 @@ const InputPage = () => {
     }
   };
 
-  const handleAddGoal = async () => {
-    if (!validateGoalData()) return;
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post(
-        'https://graduproj.runasp.net/api/Goal/add_goal',
-        goalData,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      showToast(response.data.message || 'Goal successfully added!', 'success');
-      navigate('/home');
-    } catch (error) {
-      handleError(error);
-    }
-  };
+const handleAddGoal = async () => {
+  if (hasAddedGoal) {
+    showToast("You already added your goal. You can only update it.", 'error');
+    return;
+  }
+
+  if (!validateGoalData()) return;
+
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      'https://graduproj.runasp.net/api/Goal/add_goal',
+      goalData,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    showToast(response.data.message || 'Goal successfully added!', 'success');
+    setHasAddedGoal(true); 
+    navigate('/home');
+  } catch (error) {
+    handleError(error);
+  }
+};
 
   const handleUpdateGoal = async () => {
     if (!validateGoalData()) return;
