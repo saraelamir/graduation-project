@@ -10,7 +10,7 @@ import {
   Alert,
   Image,
 } from "react-bootstrap";
-import VerifyCode from "./VerifyCode";
+// import VerifyCode from "./VerifyCode";
 import * as userService from "../api/userProfileService";
 import "./Settings.css";
 
@@ -31,8 +31,6 @@ const Settings = () => {
   const [previewUrl, setPreviewUrl] = useState("");
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState("");
-  const [showVerify, setShowVerify] = useState(false);
-  const [verifyContext, setVerifyContext] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
@@ -102,16 +100,22 @@ const Settings = () => {
       .catch(() => setErrors({ name: "Update failed." }))
       .finally(() => setIsSaving(false));
   };
-const handleEmailUpdate = () => {
-  setIsSaving(true);
-  userService
-    .updateEmail(profile.email)
-    .then(() => {
-      setSuccess("Email updated.");
-    })
-    .catch(() => setErrors({ email: "Failed to send verification code." }))
-    .finally(() => setIsSaving(false));
-};
+
+  const handleEmailUpdate = () => {
+    if (!profile.email.endsWith("@gmail.com")) {
+      setErrors({ email: "Email must end with @gmail.com." });
+      return;
+    }
+    setIsSaving(true);
+    userService
+      .updateEmail(profile.email)
+      .then(() => {
+        setSuccess("Email updated.");
+      })
+      .catch(() => setErrors({ email: "Failed to send verification code." }))
+      .finally(() => setIsSaving(false));
+  };
+
   const handleCountryUpdate = () => {
     setIsSaving(true);
     userService
@@ -120,6 +124,7 @@ const handleEmailUpdate = () => {
       .catch(() => setErrors({ country: "Update failed." }))
       .finally(() => setIsSaving(false));
   };
+
   const handlePasswordUpdate = () => {
     if (passwords.new !== passwords.confirm) {
       setErrors({ password: "Passwords do not match." });
@@ -129,12 +134,12 @@ const handleEmailUpdate = () => {
     userService
       .changePassword(passwords.current, passwords.new, passwords.confirm)
       .then(() => {
-        setVerifyContext("password-change");
-        setShowVerify(true);
+        setSuccess("Password changed.");
       })
-      .catch(() => setErrors({ password: "Failed to send verification code." }))
+      .catch(() => setErrors({ password: "Failed to change password." }))
       .finally(() => setIsSaving(false));
   };
+
   const handleAccountDeletion = () => {
     if (!window.confirm("This will permanently delete your account. Continue?"))
       return;
@@ -146,15 +151,6 @@ const handleEmailUpdate = () => {
       })
       .catch(() => setErrors({ delete: "Deletion failed." }));
   };
-  const onVerified = (code) => {
-    const fn =
-      verifyContext === "email-change"
-        ? userService.verifyEmailChange
-        : userService.verifyPasswordChange;
-    fn(code)
-      .then(() => window.location.reload())
-      .catch(() => alert("Verification failed."));
-  };
 
   return (
     <Container fluid className="px-0">
@@ -163,10 +159,18 @@ const handleEmailUpdate = () => {
 
         {errors.fetch && <Alert variant="danger">{errors.fetch}</Alert>}
         {success && <Alert variant="success">{success}</Alert>}
+        {errors.email && <Alert variant="danger">{errors.email}</Alert>}
+        {errors.name && <Alert variant="danger">{errors.name}</Alert>}
+        {errors.country && <Alert variant="danger">{errors.country}</Alert>}
+        {errors.picture && <Alert variant="danger">{errors.picture}</Alert>}
+        {errors.password && <Alert variant="danger">{errors.password}</Alert>}
+        {errors.delete && <Alert variant="danger">{errors.delete}</Alert>}
 
         {/* Profile Picture */}
         <Card className="p-1 mb-4 personal-info">
-          <h5 className="mb-3">Profile Picture</h5>
+          <h5 className="mb-3 mt-1" style={{ marginLeft: "1.5rem" }}>
+            Profile Picture
+          </h5>
           <Row className="align-items-center">
             <Col xs={12} md={6} className="text-center text-md-left mb-3">
               {previewUrl ? (
@@ -187,7 +191,10 @@ const handleEmailUpdate = () => {
               />
             </Col>
             <Col xs={12} md={6} className="text-center text-md-right">
-              <div className="d-flex flex-wrap justify-content-center justify-content-md-end gap-2">
+              <div
+                className="d-flex flex-wrap justify-content-center justify-content-md-end gap-2"
+                style={{ marginRight: "2rem" }} // Add this line
+              >
                 <Button
                   variant="outline-info"
                   onClick={handleFileClick}
@@ -367,14 +374,6 @@ const handleEmailUpdate = () => {
           </div>
         </Card>
       </Card>
-
-      {showVerify && (
-        <VerifyCode
-          show={showVerify}
-          onHide={() => setShowVerify(false)}
-          onVerified={onVerified}
-        />
-      )}
     </Container>
   );
 };

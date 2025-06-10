@@ -233,7 +233,7 @@ export default function Signup() {
                 {isLoading ? "Signing Up..." : "Sign Up"}
               </Button>
 
-              <div className="d-flex align-items-center my-3">
+              {/* <div className="d-flex align-items-center my-3">
                 <div className="flex-grow-1 border-top border-white"></div>
                 <span className="mx-2 text-white" style={{ fontSize: "0.8rem" }}>
                   or
@@ -251,7 +251,7 @@ export default function Signup() {
                   style={{ width: "1rem", marginRight: "8px" }}
                 />
                 <span>Continue with Google</span>
-              </Button>
+              </Button> */}
             </Form>
           </div>
         </div>

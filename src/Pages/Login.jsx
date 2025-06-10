@@ -49,13 +49,11 @@ const handleGoogleLogin = async (response) => {
 
       const res = await axios.post("https://graduproj.runasp.net/api/Account/google-login", googleData);
 
-      // ✅ خزن التوكن في localStorage
       const token = res.data.token;
       localStorage.setItem("token", token);
 
       showToastMessage("success", "Google login successful!");
 
-      // ✅ تنقلي المستخدم على نفس صفحة ال login العادية (ممكن تخليها /welcome بدل /home)
       setTimeout(() => navigate("/welcome"), 1500);
     }
   } catch (error) {
@@ -150,14 +148,12 @@ const handleGoogleLogin = async (response) => {
         </Toast>
       </ToastContainer>
 
-      {/* مودال "Forgot Password" */}
       <ForgotPassword
         show={showForgotPassword}
         handleClose={handleCloseForgotPassword}
         handleShowResetPassword={handleShowResetPassword}
       />
 
-      {/* مودال "Reset Password" */}
       <ResetPassword show={showResetPassword} handleClose={handleCloseResetPassword} />
     </GoogleOAuthProvider>
   );
