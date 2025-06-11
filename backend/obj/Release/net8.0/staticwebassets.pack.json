@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\FinalPro\\GraduProjj\\wwwroot\\ProfilePictures\\59cbec88-ec41-4997-b62f-3447d6b317c3.png",
+      "PackagePath": "staticwebassets\\ProfilePictures\\59cbec88-ec41-4997-b62f-3447d6b317c3.png"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.GraduProjj.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.GraduProjj.props",
+      "PackagePath": "build\\GraduProjj.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.GraduProjj.props",
+      "PackagePath": "buildMultiTargeting\\GraduProjj.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.GraduProjj.props",
+      "PackagePath": "buildTransitive\\GraduProjj.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

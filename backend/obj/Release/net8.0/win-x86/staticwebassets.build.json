@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "K9R85U2UbMUzOBxcCzvbFXJV/pxJV0SBSsb72w4AjMk=",
+  "Source": "GraduProjj",
+  "BasePath": "_content/GraduProjj",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "GraduProjj\\wwwroot",
+      "Source": "GraduProjj",
+      "ContentRoot": "D:\\FinalProjjjjjjjjjjjj\\GraduProjj\\wwwroot\\",
+      "BasePath": "_content/GraduProjj",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\FinalProjjjjjjjjjjjj\\GraduProjj\\wwwroot\\.well-known\\pki-validation\\21B1A4C8490585FC054930EE887B88FD.txt",
+      "SourceId": "GraduProjj",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FinalProjjjjjjjjjjjj\\GraduProjj\\wwwroot\\",
+      "BasePath": "_content/GraduProjj",
+      "RelativePath": ".well-known/pki-validation/21B1A4C8490585FC054930EE887B88FD.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\.well-known\\pki-validation\\21B1A4C8490585FC054930EE887B88FD.txt"
+    }
+  ]
+}

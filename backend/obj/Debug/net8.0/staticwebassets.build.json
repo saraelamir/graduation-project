@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "4xnRLqmRKWFC9aPT/R/rtwHyUNfAPWPTmqZDnexjQew=",
+  "Source": "GraduProjj",
+  "BasePath": "_content/GraduProjj",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "GraduProjj\\wwwroot",
+      "Source": "GraduProjj",
+      "ContentRoot": "D:\\GradProo\\GraduProjj\\wwwroot\\",
+      "BasePath": "_content/GraduProjj",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\GradProo\\GraduProjj\\wwwroot\\ProfilePictures\\59cbec88-ec41-4997-b62f-3447d6b317c3.png",
+      "SourceId": "GraduProjj",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GradProo\\GraduProjj\\wwwroot\\",
+      "BasePath": "_content/GraduProjj",
+      "RelativePath": "ProfilePictures/59cbec88-ec41-4997-b62f-3447d6b317c3.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ProfilePictures\\59cbec88-ec41-4997-b62f-3447d6b317c3.png"
+    }
+  ]
+}

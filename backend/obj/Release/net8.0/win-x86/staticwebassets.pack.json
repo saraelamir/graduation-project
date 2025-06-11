@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\FinalProjjjjjjjjjjjj\\GraduProjj\\wwwroot\\.well-known\\pki-validation\\21B1A4C8490585FC054930EE887B88FD.txt",
+      "PackagePath": "staticwebassets\\.well-known\\pki-validation\\21B1A4C8490585FC054930EE887B88FD.txt"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\win-x86\\staticwebassets\\msbuild.GraduProjj.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\win-x86\\staticwebassets\\msbuild.build.GraduProjj.props",
+      "PackagePath": "build\\GraduProjj.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\win-x86\\staticwebassets\\msbuild.buildMultiTargeting.GraduProjj.props",
+      "PackagePath": "buildMultiTargeting\\GraduProjj.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\win-x86\\staticwebassets\\msbuild.buildTransitive.GraduProjj.props",
+      "PackagePath": "buildTransitive\\GraduProjj.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
